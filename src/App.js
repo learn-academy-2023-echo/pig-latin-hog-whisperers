@@ -31,7 +31,12 @@ const App = () => {
       })
       console.log("vowelsArray:", vowelsArray)
 
-      // ACTION ITEM: your Pig Latin logic goes here!
+      // ACTION ITEM: your Pig Latin logic goes here! 
+
+      // If the index of first character of the word does not exist in vowels array, add 'way' to the end
+      if (vowelsArray.indexOf(eachWord[0]) !== -1){
+          eachWord = eachWord + 'way'
+      }
 
       // ACTION ITEM: this return will be the output of your Pig Latin'd code
       return eachWord
