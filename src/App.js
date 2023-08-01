@@ -39,17 +39,23 @@ const App = () => {
       }
        // if q is 
        // the first leter: return word.slice in the index of q +1 + 'ayqu'
-       // the econd letter 
+       // the second letter 
        //
        // if word sliced from index to index + 2  is equal to "qu" 
        // increment index
        // update word to current word sliced from index + current word sliced from zero index to incremented index + 'ay'
-      
+       
+       // if there is no vowel, there is a "y", and there the first letter of the word is not a "y"
+       // update word to current word sliced from index + current word sliced from zero index to incremented index + 'ay'
        for (let i = 0; i < eachWord.length; i++) {
          if ( eachWord.slice(i, i +2) === "qu") {
           i++
           eachWord = eachWord.slice(i) + eachWord.slice(0, i) + "ay"
+        } else if (vowelsArray.indexOf(eachWord[i]) === -1 && eachWord[i] === "y" && eachWord[0] !== "y") {
+          eachWord = eachWord.slice(i) + eachWord.slice(0, i) + "ay"
+          break
         }
+  
        }
        
 
@@ -112,5 +118,7 @@ const App = () => {
     </div>
   )
 }
+
+
 
 export default App
