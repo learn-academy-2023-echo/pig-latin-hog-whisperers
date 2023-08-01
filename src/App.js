@@ -16,7 +16,7 @@ const App = () => {
     console.log("arrayOfUserInput:", arrayOfUserInput)
 
     // NO MODIFICATION NEEDED: now that we have an array of words, we can map over the array and look at each word
-    const translatedWordsArray = arrayOfUserInput.map((eachWord) => {
+    const translatedWordsArray = arrayOfUserInput.map((eachWord, index) => {
       console.log("eachWord:", eachWord)
 
       // NO MODIFICATION NEEDED: this code will look at each word and identify the vowels
@@ -37,6 +37,23 @@ const App = () => {
       if (vowelsArray.indexOf(eachWord[0]) !== -1){
           eachWord = eachWord + 'way'
       }
+       // if q is 
+       // the first leter: return word.slice in the index of q +1 + 'ayqu'
+       // the econd letter 
+       //
+       // if word sliced from index to index + 2  is equal to "qu" 
+       // increment index
+       // update word to current word sliced from index + current word sliced from zero index to incremented index + 'ay'
+      
+       for (let i = 0; i < eachWord.length; i++) {
+         if ( eachWord.slice(i, i +2) === "qu") {
+          i++
+          eachWord = eachWord.slice(i) + eachWord.slice(0, i) + "ay"
+        }
+       }
+       
+
+      
 
       // ACTION ITEM: this return will be the output of your Pig Latin'd code
       return eachWord
