@@ -35,7 +35,7 @@ const App = () => {
 
       // If the index of first character of the word does not exist in vowels array, add 'way' to the end
       if (vowelsArray.indexOf(eachWord[0]) !== -1){
-          eachWord = eachWord + 'way'
+          return eachWord + 'way'
       }
        // if q is 
        // the first leter: return word.slice in the index of q +1 + 'ayqu'
@@ -54,8 +54,7 @@ const App = () => {
         } else if (vowelsArray.indexOf(eachWord[i]) === -1 && eachWord[i] === "y" && eachWord[0] !== "y") {
           eachWord = eachWord.slice(i) + eachWord.slice(0, i) + "ay"
           break
-        }
-  
+        } 
        }
        
 
