@@ -12,7 +12,7 @@ const App = () => {
   // ACTION ITEM: the "myPigLatinCodeHere" function is where you will put your logic to translate the sentence entered by the user into Pig Latin
   const myPigLatinCodeHere = () => {
     // NO MODIFICATION NEEDED: the variable "arrayOfUserInput" will contain the text input from the user split into an array of words
-    const arrayOfUserInput = userInput.split(" ")
+    const arrayOfUserInput = userInput.toLowerCase().split(" ")
     console.log("arrayOfUserInput:", arrayOfUserInput)
 
     // NO MODIFICATION NEEDED: now that we have an array of words, we can map over the array and look at each word
@@ -47,22 +47,22 @@ const App = () => {
        
        // if there is no vowel, there is a "y", and there the first letter of the word is not a "y"
        // update word to current word sliced from index + current word sliced from zero index to incremented index + 'ay'
-       for (let i = 0; i < eachWord.length; i++) {
+       for (var i = 0; i < eachWord.length; i++) {
          if ( eachWord.slice(i, i +2) === "qu") {
           i++
-          eachWord = eachWord.slice(i) + eachWord.slice(0, i) + "ay"
         } else if (vowelsArray.indexOf(eachWord[i]) === -1 && eachWord[i] === "y" && eachWord[0] !== "y") {
-          eachWord = eachWord.slice(i) + eachWord.slice(0, i) + "ay"
+          break
+        } else if (vowelsArray.indexOf(eachWord[i]) !== -1 ) {
           break
         } 
-       }
-       
+        }
+        eachWord = eachWord.slice(i) + eachWord.slice(0, i) + "ay"
 
       
 
       // ACTION ITEM: this return will be the output of your Pig Latin'd code
-      return eachWord
-    })
+      return eachWord 
+      })
 
     // NO MODIFICATION NEEDED: once the code has been modified it gets joined from an array back to a string
     const translatedWords = translatedWordsArray.join(" ")
