@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import "./App.css"
 import butcherPigImage from "./assets/butcherPig.jpeg"
+import pigLatinImage from "./assets/Pig-latin-new.jpg"
 
 const App = () => {
   // ACTION ITEM: to make the development process easier there are some preassigned words in the input field, when you are ready for your full user experience delete the test words passed to useState and pass an empty string
@@ -12,7 +13,7 @@ const App = () => {
   // ACTION ITEM: the "myPigLatinCodeHere" function is where you will put your logic to translate the sentence entered by the user into Pig Latin
   const myPigLatinCodeHere = () => {
     // NO MODIFICATION NEEDED: the variable "arrayOfUserInput" will contain the text input from the user split into an array of words
-    const arrayOfUserInput = userInput.split(" ")
+    const arrayOfUserInput = userInput.toLowerCase().split(" ")
     console.log("arrayOfUserInput:", arrayOfUserInput)
 
     // NO MODIFICATION NEEDED: now that we have an array of words, we can map over the array and look at each word
@@ -33,36 +34,33 @@ const App = () => {
 
       // ACTION ITEM: your Pig Latin logic goes here! 
 
-      // If the index of first character of the word does not exist in vowels array, add 'way' to the end
+      // If the index of first character of the word is not a vowel, add 'way' to the end of the word
       if (vowelsArray.indexOf(eachWord[0]) !== -1){
-          return eachWord + 'way'
+          return eachWord + "way"
       }
-       // if q is 
-       // the first leter: return word.slice in the index of q +1 + 'ayqu'
-       // the second letter 
-       //
-       // if word sliced from index to index + 2  is equal to "qu" 
-       // increment index
-       // update word to current word sliced from index + current word sliced from zero index to incremented index + 'ay'
-       
-       // if there is no vowel, there is a "y", and there the first letter of the word is not a "y"
-       // update word to current word sliced from index + current word sliced from zero index to incremented index + 'ay'
-       for (let i = 0; i < eachWord.length; i++) {
-         if ( eachWord.slice(i, i +2) === "qu") {
+
+      // loop through each character of the word
+      for (var i = 0; i < eachWord.length; i++) {
+        // If word sliced from current index to current index + 2  is equal to "qu" 
+        if (eachWord.slice(i, i + 2) === "qu") {
+          //increment index
           i++
-          eachWord = eachWord.slice(i) + eachWord.slice(0, i) + "ay"
+        // If current character is not a vowel, and the word has a "y", and the first letter of the word is not a "y"
         } else if (vowelsArray.indexOf(eachWord[i]) === -1 && eachWord[i] === "y" && eachWord[0] !== "y") {
-          eachWord = eachWord.slice(i) + eachWord.slice(0, i) + "ay"
+          // break out of the loop
+          break
+        // If a vowel is encountered
+        } else if (vowelsArray.indexOf(eachWord[i]) !== -1) {
+          // break out of loop
           break
         } 
-       }
-       
+      }
+        // update word to current word sliced from index + current word sliced from zero index to incremented index and add 'ay' to end of word
+        eachWord = eachWord.slice(i) + eachWord.slice(0, i) + "ay"
 
-      
-
-      // ACTION ITEM: this return will be the output of your Pig Latin'd code
-      return eachWord
-    })
+        // ACTION ITEM: this return will be the output of your Pig Latin'd code
+        return eachWord 
+      })
 
     // NO MODIFICATION NEEDED: once the code has been modified it gets joined from an array back to a string
     const translatedWords = translatedWordsArray.join(" ")
@@ -90,7 +88,7 @@ const App = () => {
   }
 
   return (
-    <div className="page-container">
+    <div className="page-container" style={{backgroundImage: `url(${pigLatinImage})`}}>
       <div className="body-container">
         <h1>Pig Latin Translator</h1>
         <img
@@ -111,9 +109,9 @@ const App = () => {
           <button onClick={setUpPreventDefault}>Submit</button>
           <button onClick={restartGame}>Clear</button>
         </div>
-        <p>{inputTranslated}</p>
+        <p className="translatedText">{inputTranslated}</p>
       </div>
-      <footer>&copy; 2023 | Coded by: Your Names Here!</footer>
+      <footer>&copy; 2023 | Coded by: Peter, Justin, Kiana!</footer>
     </div>
   )
 }
